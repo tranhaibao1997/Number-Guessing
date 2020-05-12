@@ -67,7 +67,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         if (input ==correctNumber) {
       
           alert("correct ^^");
-          turnLeft = 4;
+          turnLeft = 3;
           history = [];
           document.getElementById("historyArea").innerHTML = `History:${history}`;
           document.getElementById("turnLeftArea").innerHTML = turnLeft;
