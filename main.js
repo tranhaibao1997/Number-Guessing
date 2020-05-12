@@ -30,9 +30,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
     var input = document.getElementById("input").value;
     document.getElementById("resultArea").innerHTML = "";
     if (input) {
-      history.find(elm => elm === input)
-        ? alert("Duplicated input")
-        : history.push(input);
+
+      if(history.find(elm => elm === input))
+      {
+        alert("Duplicated input");
+        return;
+      }
+      else
+      {
+        history.push(input);
+      }
+        // ? alert("Duplicated input");break;
+        // : 
       if (turnLeft > 0) {
         if (input > correctNumber) {
           document.getElementById("notiArea").innerHTML = `the number is too big`;
