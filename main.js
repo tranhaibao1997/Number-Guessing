@@ -2,6 +2,7 @@
 window.addEventListener('DOMContentLoaded', (event) => {
 
   var correctNumber = Math.floor(Math.random() * 10);
+  console.log("the correct number is :" + correctNumber)
 
   let turnLeft = 3;
   let history = [];
@@ -16,8 +17,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById("btn").disabled = false
     document.getElementById("input").value = ""
     correctNumber = Math.floor(Math.random() * 10);
+    console.log("the correct number is :" + correctNumber)
+    document.getElementById("resultArea").innerHTML = "";
   })
-  console.log("the correct number is :" + correctNumber)
+  
 
 
 
@@ -46,6 +49,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
           document.getElementById("notiArea").innerHTML = "";
           document.getElementById("input").value = ""
           correctNumber = Math.floor(Math.random() * 10);
+          console.log("the correct number is :" + correctNumber)
         }
         turnLeft--;
         document.getElementById("input").value = "";
@@ -55,6 +59,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         turnLeft = 0;
         document.getElementById("resultArea").innerHTML = `The result is:${correctNumber}`;
          correctNumber = Math.floor(Math.random() * 10);
+         console.log("the correct number is :" + correctNumber)
 
 
 
