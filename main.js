@@ -8,6 +8,43 @@ window.addEventListener('DOMContentLoaded', (event) => {
   let history = [];
   document.getElementById("turnLeftArea").innerHTML = turnLeft;
 
+
+
+  let makeBallDisapear=(ballNumber)=>
+  {
+   
+    let ballList=document.querySelectorAll(".ball")
+
+    for(let i=0;i<ballList.length;i++)
+    {
+      if(ballList[i].getAttribute("data-number")==ballNumber)
+      {
+        ballList[i].classList.add("disappear")
+      }
+    }
+  }
+  
+  let makeBallNormal=()=>{
+    let ballList=document.querySelectorAll(".ball")
+    for(let i=0;i<ballList.length;i++)
+    {
+      ballList[i].classList.remove("disappear")
+    }
+  }
+  let ballHappy=(ballNumber)=>{
+    
+    let ballList=document.querySelectorAll(".ball")
+
+    for(let i=0;i<ballList.length;i++)
+    {
+      if(ballList[i].getAttribute("data-number")==ballNumber)
+      {
+        ballList[i].classList.add("shake")
+      }
+    }
+  }
+  
+
   document.getElementById("btnRS").addEventListener("click", () => {
     turnLeft = 3;
     history = [];
@@ -19,6 +56,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     correctNumber = Math.floor(Math.random() * 10);
     console.log("the correct number is :" + correctNumber)
     document.getElementById("resultArea").innerHTML = "";
+    makeBallNormal();
   })
 
 
@@ -27,7 +65,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
   document.getElementById("btn").addEventListener("click", () => {
-    console.log(turnLeft)
     var input = document.getElementById("input").value;
     document.getElementById("resultArea").innerHTML = "";
     if (input) {
@@ -44,11 +81,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
       }
       if (turnLeft > 1) {
         if (input > correctNumber) {
+          makeBallDisapear(input);
           document.getElementById("notiArea").innerHTML = `the number is too big`;
         } else if (input < correctNumber) {
-          document.getElementById(
-            "notiArea"
-          ).innerHTML = `the number is too small`;
+          makeBallDisapear(input);
+          document.getElementById("notiArea").innerHTML = `the number is too small`;
         } else {
           alert("correct ^^");
           turnLeft = 4;
@@ -63,9 +100,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         turnLeft--;
         document.getElementById("input").value = "";
       } else {
-        console.log(input,correctNumber)
         if (input ==correctNumber) {
-      
+
           alert("correct ^^");
           turnLeft = 3;
           history = [];
@@ -80,6 +116,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
           document.getElementById("btn").disabled = true
           alert("Out of turn");
           turnLeft = 0;
+          ballHappy(correctNumber);
           document.getElementById("resultArea").innerHTML = `The result is:${correctNumber}`;
           correctNumber = Math.floor(Math.random() * 10);
           console.log("the correct number is :" + correctNumber)
