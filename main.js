@@ -112,6 +112,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
           document.getElementById("resultArea").innerHTML = `The result is:${correctNumber}`;
           correctNumber = Math.floor(Math.random() * 10);
           console.log("the correct number is :" + correctNumber);
+          timeOut();
         
         }
 
