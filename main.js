@@ -103,7 +103,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       } else {
         if (input ==correctNumber) {
 
-          alert("correct ^^");
+          alert("OMG U KILLED THE BALLLLLLLLL");
           turnLeft = 3;
           history = [];
           document.getElementById("historyArea").innerHTML = `History:${history}`;
