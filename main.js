@@ -10,41 +10,35 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
 
-  let makeBallDisapear=(ballNumber)=>
-  {
-   
-    let ballList=document.querySelectorAll(".ball")
+  let makeBallDisapear = (ballNumber) => {
 
-    for(let i=0;i<ballList.length;i++)
-    {
-      if(ballList[i].getAttribute("data-number")==ballNumber)
-      {
+    let ballList = document.querySelectorAll(".ball")
+
+    for (let i = 0; i < ballList.length; i++) {
+      if (ballList[i].getAttribute("data-number") == ballNumber) {
         ballList[i].classList.add("disappear")
       }
     }
   }
-  
-  let makeBallNormal=()=>{
-    let ballList=document.querySelectorAll(".ball")
-    for(let i=0;i<ballList.length;i++)
-    {
+
+  let makeBallNormal = () => {
+    let ballList = document.querySelectorAll(".ball")
+    for (let i = 0; i < ballList.length; i++) {
       ballList[i].classList.remove("disappear")
       ballList[i].classList.remove("shake")
     }
   }
-  let ballHappy=(ballNumber)=>{
-    
-    let ballList=document.querySelectorAll(".ball")
+  let ballHappy = (ballNumber) => {
 
-    for(let i=0;i<ballList.length;i++)
-    {
-      if(ballList[i].getAttribute("data-number")==ballNumber)
-      {
+    let ballList = document.querySelectorAll(".ball")
+
+    for (let i = 0; i < ballList.length; i++) {
+      if (ballList[i].getAttribute("data-number") == ballNumber) {
         ballList[i].classList.add("shake")
       }
     }
   }
-  
+
 
   document.getElementById("btnRS").addEventListener("click", () => {
     turnLeft = 3;
@@ -58,6 +52,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     console.log("the correct number is :" + correctNumber)
     document.getElementById("resultArea").innerHTML = "";
     makeBallNormal();
+    timeOut();
+    timecounting(15)
   })
 
 
@@ -88,22 +84,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
           makeBallDisapear(input);
           document.getElementById("notiArea").innerHTML = `the number is too small`;
         } else {
-          alert("correct ^^");
-          turnLeft = 4;
-          history = [];
-          document.getElementById("historyArea").innerHTML = `History:${history}`;
-          document.getElementById("turnLeftArea").innerHTML = turnLeft;
-          document.getElementById("notiArea").innerHTML = "";
-          document.getElementById("input").value = ""
-          correctNumber = Math.floor(Math.random() * 10);
-          console.log("the correct number is :" + correctNumber);
-          makeBallNormal();
+
         }
         turnLeft--;
         document.getElementById("input").value = "";
       } else {
-        if (input ==correctNumber) {
-          
+        if (input == correctNumber) {
+          makeBallDisapear(input);
           alert("OMG U KILLED THE BALLLLLLLLL");
           makeBallNormal();
           turnLeft = 3;
@@ -114,6 +101,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
           document.getElementById("input").value = ""
           correctNumber = Math.floor(Math.random() * 10);
           console.log("the correct number is :" + correctNumber)
+          timeOut();
+          timecounting(15)
         }
         else {
           document.getElementById("btn").disabled = true
@@ -122,7 +111,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
           ballHappy(correctNumber);
           document.getElementById("resultArea").innerHTML = `The result is:${correctNumber}`;
           correctNumber = Math.floor(Math.random() * 10);
-          console.log("the correct number is :" + correctNumber)
+          console.log("the correct number is :" + correctNumber);
+        
         }
 
 
@@ -137,4 +127,31 @@ window.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById("historyArea").innerHTML = `History:${history}`;
     document.getElementById("turnLeftArea").innerHTML = turnLeft;
   });
+
+  let myTime;
+  function timecounting(time) {
+    myTime = setInterval(() => {
+      if (time === 0) {
+        document.getElementById("btn").disabled = true
+        alert("Out of turn");
+        turnLeft = 0;
+        ballHappy(correctNumber);
+        document.getElementById("resultArea").innerHTML = `The result is:${correctNumber}`;
+        correctNumber = Math.floor(Math.random() * 10);
+        console.log("the correct number is :" + correctNumber)
+        timeOut();
+        return;
+      }
+      time -= 1
+      document.getElementById('timecount').innerHTML = time
+    }, 1000)
+  }
+  timecounting(15)
+
+  function timeOut() {
+    clearInterval(myTime);
+  }
+
+
+
 });
