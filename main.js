@@ -29,6 +29,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     for(let i=0;i<ballList.length;i++)
     {
       ballList[i].classList.remove("disappear")
+      ballList[i].classList.remove("shake")
     }
   }
   let ballHappy=(ballNumber)=>{
