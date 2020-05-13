@@ -96,14 +96,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
           document.getElementById("notiArea").innerHTML = "";
           document.getElementById("input").value = ""
           correctNumber = Math.floor(Math.random() * 10);
-          console.log("the correct number is :" + correctNumber)
+          console.log("the correct number is :" + correctNumber);
+          makeBallNormal();
         }
         turnLeft--;
         document.getElementById("input").value = "";
       } else {
         if (input ==correctNumber) {
-
+          
           alert("OMG U KILLED THE BALLLLLLLLL");
+          makeBallNormal();
           turnLeft = 3;
           history = [];
           document.getElementById("historyArea").innerHTML = `History:${history}`;
